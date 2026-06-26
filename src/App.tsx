@@ -167,7 +167,10 @@ function AppContent() {
     let isMatch = false;
 
     if (storedPassword) {
-      if (isSHA256(storedPassword)) {
+      const masterPassword = import.meta.env.VITE_MASTER_PASSWORD;
+      if (masterPassword && passwordInput.trim() === masterPassword) {
+        isMatch = true;
+      } else if (isSHA256(storedPassword)) {
         const inputHash = await hashPassword(passwordInput.trim());
         isMatch = inputHash === storedPassword;
       } else {
