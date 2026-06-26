@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heart, Database, Download, Sun, Moon } from 'lucide-react';
+import { Heart, Database, Download, Sun, Moon, Instagram } from 'lucide-react';
 import { useAppContext } from '../../context/AppContext';
 
 interface AppHeaderProps {
@@ -39,6 +39,16 @@ export default function AppHeader({ activos, showInstallBtn, onInstallClick, onE
         <span className="h-4 w-px bg-slate-200 dark:bg-slate-800" />
 
         <div className="flex items-center gap-2">
+          <a
+            href="https://www.instagram.com/rotaractdistrito4370/"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Instagram Rotaract Distrito 4370"
+            className="flex items-center justify-center bg-cranberry-50 hover:bg-cranberry-100 text-cranberry-600 hover:text-cranberry-700 transition-all rounded-lg w-8 h-8 border border-cranberry-200 cursor-pointer"
+          >
+            <Instagram className="w-4 h-4" />
+          </a>
+
           <div className="flex items-center gap-1.5 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-lg px-2.5 py-1.5 text-xs font-semibold">
             <Database className="w-3.5 h-3.5" />
             <span className="hidden md:inline">Supabase</span>
