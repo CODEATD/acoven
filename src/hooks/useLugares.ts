@@ -90,13 +90,16 @@ export function useLugares() {
   }, [fetchLugares]);
 
   const addLugar = async (lugar: Omit<Lugar, 'id' | 'createdAt'>): Promise<Lugar | null> => {
+    const payload = toDB(lugar);
+    console.log('Insertando a Supabase:', payload);
     const { data, error: err } = await supabase
       .from('puntos_acopio')
-      .insert(toDB(lugar))
+      .insert(payload)
       .select()
       .single();
 
     if (err) {
+      console.error('Error detallado de Supabase al insertar:', err);
       throw new Error(err.message);
     }
     return toApp(data as LugarDB);
