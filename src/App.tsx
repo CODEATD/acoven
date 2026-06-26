@@ -312,7 +312,7 @@ function AppContent() {
   const inactivos = lugares.filter((l) => l.estadoOperativo === 'inactivo').length;
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col font-sans transition-colors duration-200">
+    <div className="min-h-screen bg-white text-rotaract-text flex flex-col font-sans transition-colors duration-200">
       {/* Loading overlay during initial data fetch */}
       {loading && <LoadingOverlay />}
 
