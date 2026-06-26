@@ -6,7 +6,7 @@
 export interface Lugar {
   id: string;
   nombre: string;
-  estado: string; // Estado de la República (e.g. Jalisco, CDMX)
+  estado: string; // Estado de Venezuela (e.g. Miranda, Distrito Capital)
   descripcion: string;
   lat: number;
   lng: number;
@@ -15,41 +15,35 @@ export interface Lugar {
   tipoAcopio: string; // 'Víveres' | 'Medicamentos' | 'Ropa' | 'Herramientas' | 'Múltiple'
   estadoOperativo: 'activo' | 'saturado' | 'inactivo'; // 'activo' (Recibiendo), 'saturado' (Lleno), 'inactivo' (Cerrado)
   createdAt: string;
+  password?: string; // Contraseña opcional para puntos heredados, pero requerida para nuevos
 }
 
-export const ESTADOS_MEXICO = [
-  "Aguascalientes",
-  "Baja California",
-  "Baja California Sur",
-  "Campeche",
-  "Chiapas",
-  "Chihuahua",
-  "Ciudad de México",
-  "Coahuila",
-  "Colima",
-  "Durango",
-  "Estado de México",
-  "Guanajuato",
-  "Guerrero",
-  "Hidalgo",
-  "Jalisco",
-  "Michoacán",
-  "Morelos",
-  "Nayarit",
-  "Nuevo León",
-  "Oaxaca",
-  "Puebla",
-  "Querétaro",
-  "Quintana Roo",
-  "San Luis Potosí",
-  "Sinaloa",
-  "Sonora",
-  "Tabasco",
-  "Tamaulipas",
-  "Tlaxcala",
-  "Veracruz",
-  "Yucatán",
-  "Zacatecas",
+export const ESTADOS_VENEZUELA = [
+  "Amazonas",
+  "Anzoátegui",
+  "Apure",
+  "Aragua",
+  "Barinas",
+  "Bolívar",
+  "Carabobo",
+  "Cojedes",
+  "Delta Amacuro",
+  "Distrito Capital",
+  "Falcón",
+  "Guárico",
+  "Lara",
+  "Mérida",
+  "Miranda",
+  "Monagas",
+  "Nueva Esparta",
+  "Portuguesa",
+  "Sucre",
+  "Táchira",
+  "Trujillo",
+  "Vargas (La Guaira)",
+  "Yaracuy",
+  "Zulia",
+  "Dependencias Federales",
   "Otro"
 ];
 

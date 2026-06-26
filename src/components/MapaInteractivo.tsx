@@ -80,10 +80,10 @@ export default function MapaInteractivo({
   useEffect(() => {
     if (!mapContainerRef.current || mapRef.current) return;
 
-    // Mexico Centered Default View
+    // Venezuela Centered Default View
     const map = L.map(mapContainerRef.current, {
-      center: [23.6345, -102.5528], // Central Mexico coordinates
-      zoom: 5,
+      center: [8.0, -66.0], // Coordenadas centrales de Venezuela
+      zoom: 6,
       zoomControl: true,
     });
 
@@ -149,6 +149,11 @@ export default function MapaInteractivo({
           <div class="mt-2.5 flex items-center justify-between text-[11px] text-gray-400">
             <span>Lat: ${lugar.lat}</span>
             <span>Lng: ${lugar.lng}</span>
+          </div>
+          <div class="mt-3">
+            <a href="https://www.google.com/maps/search/?api=1&query=${lugar.lat},${lugar.lng}" target="_blank" rel="noopener noreferrer" class="block text-center text-xs font-bold text-white bg-blue-700 hover:bg-blue-800 transition-all rounded-lg py-1.5 px-3 no-underline shadow-sm">
+              Ver en Google Maps
+            </a>
           </div>
         </div>
       `;
