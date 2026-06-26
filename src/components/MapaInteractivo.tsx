@@ -15,6 +15,8 @@ interface MapaInteractivoProps {
   onSelectCoords: (lat: number, lng: number) => void;
   tempCoords: { lat: number; lng: number } | null;
   onSelectLugarFromMap: (lugar: Lugar) => void;
+  theme: 'light' | 'dark';
+  onUserLocationResolved?: (lat: number, lng: number) => void;
 }
 
 export default function MapaInteractivo({
@@ -23,9 +25,12 @@ export default function MapaInteractivo({
   onSelectCoords,
   tempCoords,
   onSelectLugarFromMap,
+  theme,
+  onUserLocationResolved,
 }: MapaInteractivoProps) {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<L.Map | null>(null);
+  const tileLayerRef = useRef<L.TileLayer | null>(null);
   const markersLayerRef = useRef<L.LayerGroup | null>(null);
   const tempMarkerRef = useRef<L.Marker | null>(null);
   const userMarkerRef = useRef<L.Marker | null>(null);
@@ -92,11 +97,16 @@ export default function MapaInteractivo({
       zoomControl: true,
     });
 
-    // Add Tile Layer (CartoDB Positron is very clean and elegant, perfect for custom UI)
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    // Add Tile Layer (CartoDB Positron/Voyager or Dark Matter)
+    const initialTileUrl = theme === 'dark'
+      ? 'https://{s}.basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}{r}.png'
+      : 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
+
+    const tileLayer = L.tileLayer(initialTileUrl, {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
       maxZoom: 20,
     }).addTo(map);
+    tileLayerRef.current = tileLayer;
 
     // Create Layer Group for markers
     const markersLayer = L.layerGroup().addTo(map);
@@ -140,18 +150,18 @@ export default function MapaInteractivo({
 
       // Prepare custom popup HTML
       const popupContent = `
-        <div class="p-1 font-sans text-gray-800" style="min-width: 200px;">
-          <h4 class="font-bold text-sm text-gray-900 mb-0.5">${lugar.nombre}</h4>
-          <span class="inline-block px-1.5 py-0.5 text-[10px] font-semibold bg-gray-100 text-gray-700 rounded mb-2">
+        <div class="p-1 font-sans text-slate-800 dark:text-slate-200" style="min-width: 200px;">
+          <h4 class="font-bold text-sm text-slate-900 dark:text-white mb-0.5">${lugar.nombre}</h4>
+          <span class="inline-block px-1.5 py-0.5 text-[10px] font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded mb-2">
             ${lugar.estado}
           </span>
-          <p class="text-xs text-gray-600 leading-relaxed mb-2">${lugar.descripcion}</p>
-          <div class="text-[11px] text-gray-500 space-y-0.5 border-t border-gray-100 pt-1.5">
-            <div><strong class="text-gray-700">Tipo:</strong> ${lugar.tipoAcopio}</div>
-            ${lugar.contacto ? `<div><strong class="text-gray-700">Contacto:</strong> ${lugar.contacto}</div>` : ''}
-            <div><strong class="text-gray-700">Dirección:</strong> ${lugar.direccion}</div>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-2">${lugar.descripcion}</p>
+          <div class="text-[11px] text-slate-500 dark:text-slate-400 space-y-0.5 border-t border-slate-100 dark:border-slate-800 pt-1.5">
+            <div><strong class="text-slate-700 dark:text-slate-300">Tipo:</strong> ${lugar.tipoAcopio}</div>
+            ${lugar.contacto ? `<div><strong class="text-slate-700 dark:text-slate-300">Contacto:</strong> ${lugar.contacto}</div>` : ''}
+            <div><strong class="text-slate-700 dark:text-slate-300">Dirección:</strong> ${lugar.direccion}</div>
           </div>
-          <div class="mt-2.5 flex items-center justify-between text-[11px] text-gray-400">
+          <div class="mt-2.5 flex items-center justify-between text-[11px] text-slate-400 dark:text-slate-500">
             <span>Lat: ${lugar.lat}</span>
             <span>Lng: ${lugar.lng}</span>
           </div>
@@ -264,6 +274,7 @@ export default function MapaInteractivo({
         
         setUserLocation({ lat, lng });
         setLocating(false);
+        onUserLocationResolved?.(lat, lng);
 
         if (mapRef.current) {
           mapRef.current.setView([lat, lng], 14, {
@@ -310,8 +321,17 @@ export default function MapaInteractivo({
     }
   }, [userLocation]);
 
+  // 5. Update Map Tiles based on theme
+  useEffect(() => {
+    if (!tileLayerRef.current) return;
+    const url = theme === 'dark'
+      ? 'https://{s}.basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}{r}.png'
+      : 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
+    tileLayerRef.current.setUrl(url);
+  }, [theme]);
+
   return (
-    <div className="relative w-full h-full min-h-[400px] md:min-h-[500px] rounded-2xl overflow-hidden shadow-inner border border-gray-100 bg-gray-50">
+    <div className="relative w-full h-full min-h-[400px] md:min-h-[500px] rounded-2xl overflow-hidden shadow-inner border border-gray-100 dark:border-slate-800 bg-gray-50 dark:bg-slate-900">
       <div ref={mapContainerRef} className="w-full h-full z-10" id="map-leaflet" />
       
       {/* Floating GPS Button */}
@@ -320,23 +340,23 @@ export default function MapaInteractivo({
         onClick={handleLocateUser}
         disabled={locating}
         title="Centrar en mi ubicación GPS"
-        className="absolute top-4 right-4 z-20 flex items-center justify-center gap-1.5 bg-white/95 backdrop-blur-md hover:bg-slate-50 text-slate-800 disabled:text-slate-400 font-bold py-2.5 px-3.5 rounded-xl border border-slate-200/80 shadow-md transition-all cursor-pointer select-none active:scale-95"
+        className="absolute top-4 right-4 z-20 flex items-center justify-center gap-1.5 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 disabled:text-slate-400 font-bold py-2.5 px-3.5 rounded-xl border border-slate-200/80 dark:border-slate-800 shadow-md transition-all cursor-pointer select-none active:scale-95"
       >
         {locating ? (
-          <Loader2 className="w-4 h-4 animate-spin text-blue-700" />
+          <Loader2 className="w-4 h-4 animate-spin text-blue-700 dark:text-blue-500" />
         ) : (
-          <Navigation className="w-4 h-4 text-blue-700 fill-blue-700/10 rotate-45" />
+          <Navigation className="w-4 h-4 text-blue-700 dark:text-blue-500 fill-blue-700/10 rotate-45" />
         )}
         <span className="text-xs font-bold shrink-0">{locating ? 'Ubicando...' : 'Mi Ubicación'}</span>
       </button>
 
       {/* Dynamic Map Legend Overlay */}
-      <div className="absolute bottom-4 left-4 z-20 bg-white/95 backdrop-blur-md p-3.5 rounded-xl shadow-lg border border-gray-100/50 max-w-xs text-xs pointer-events-auto">
-        <h5 className="font-bold text-gray-900 mb-2 flex items-center gap-1.5">
+      <div className="absolute bottom-4 left-4 z-20 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md p-3.5 rounded-xl shadow-lg border border-gray-100/50 dark:border-slate-800/50 max-w-xs text-xs pointer-events-auto">
+        <h5 className="font-bold text-gray-900 dark:text-slate-100 mb-2 flex items-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
           Estado de Puntos
         </h5>
-        <div className="space-y-1.5 text-gray-600">
+        <div className="space-y-1.5 text-gray-600 dark:text-slate-350">
           <div className="flex items-center gap-2">
             <span className="w-3 h-3 rounded-full bg-[#10b981] inline-block shadow-sm"></span>
             <span>Abierto / Recibiendo donaciones</span>
@@ -349,8 +369,8 @@ export default function MapaInteractivo({
             <span className="w-3 h-3 rounded-full bg-[#f43f5e] inline-block shadow-sm"></span>
             <span>Inactivo / Temporalmente cerrado</span>
           </div>
-          <div className="pt-1.5 border-t border-gray-100 text-[10px] text-gray-400">
-            💡 Haz clic en cualquier parte del mapa para marcar un nuevo punto.
+          <div className="pt-1.5 border-t border-gray-100 dark:border-slate-800 text-[10px] text-gray-400 dark:text-slate-500">
+            Haz clic en el mapa para capturar coordenadas.
           </div>
         </div>
       </div>

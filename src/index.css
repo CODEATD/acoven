@@ -46,3 +46,35 @@
 .leaflet-control-zoom-out:hover {
   @apply !bg-slate-50 !text-slate-950;
 }
+
+/* Dark mode Leaflet overrides */
+.dark .custom-leaflet-popup .leaflet-popup-content-wrapper {
+  @apply !bg-slate-900/98 !border-slate-800 !text-slate-100;
+}
+
+.dark .custom-leaflet-popup .leaflet-popup-tip {
+  @apply !bg-slate-900/98;
+}
+
+.dark .custom-leaflet-popup .leaflet-popup-close-button {
+  @apply !text-slate-500;
+}
+
+.dark .custom-leaflet-popup .leaflet-popup-close-button:hover {
+  @apply !text-white !bg-slate-800;
+}
+
+.dark .leaflet-control-zoom {
+  @apply !border-slate-800;
+}
+
+.dark .leaflet-control-zoom-in,
+.dark .leaflet-control-zoom-out {
+  @apply !bg-slate-900 !text-slate-300 !border-slate-800;
+}
+
+.dark .leaflet-control-zoom-in:hover,
+.dark .leaflet-control-zoom-out:hover {
+  @apply !bg-slate-800 !text-white;
+}
+

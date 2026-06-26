@@ -1,0 +1,21 @@
+{
+  "short_name": "Busca Acopio",
+  "name": "Busca Acopio Venezuela",
+  "icons": [
+    {
+      "src": "https://img.icons8.com/color/192/ffffff/heart-with-pulse.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "https://img.icons8.com/color/512/ffffff/heart-with-pulse.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#1e293b",
+  "theme_color": "#1d4ed8",
+  "display": "standalone",
+  "orientation": "portrait"
+}
