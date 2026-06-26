@@ -31,6 +31,7 @@ import {
 import { Lugar, ESTADOS_VENEZUELA, TIPOS_ACOPIO } from './types';
 import MapaInteractivo from './components/MapaInteractivo';
 import { useLugares } from './hooks/useLugares';
+import { hashPassword, isSHA256 } from './lib/crypto';
 
 export default function App() {
   // --- SUPABASE DATA HOOK ---
@@ -108,11 +109,24 @@ export default function App() {
     setPasswordModalOpen(true);
   };
 
-  const handleVerifyPassword = (e: React.FormEvent) => {
+  const handleVerifyPassword = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!passwordAction) return;
 
-    if (passwordInput === passwordAction.lugar.password) {
+    const storedPassword = passwordAction.lugar.password;
+    let isMatch = false;
+
+    if (storedPassword) {
+      if (isSHA256(storedPassword)) {
+        const inputHash = await hashPassword(passwordInput.trim());
+        isMatch = inputHash === storedPassword;
+      } else {
+        // Retrocompatibilidad con contraseñas antiguas guardadas en texto plano
+        isMatch = passwordInput.trim() === storedPassword;
+      }
+    }
+
+    if (isMatch) {
       const { type, lugar } = passwordAction;
       setPasswordModalOpen(false);
       setPasswordAction(null);
@@ -220,6 +234,11 @@ export default function App() {
     try {
       if (editingId) {
         const lugarActual = lugares.find(l => l.id === editingId);
+        let finalPassword = lugarActual?.password;
+        if (formPassword.trim()) {
+          finalPassword = await hashPassword(formPassword.trim());
+        }
+
         await updateLugar(editingId, {
           nombre: formNombre.trim(),
           estado: formEstado,
@@ -230,7 +249,7 @@ export default function App() {
           estadoOperativo: formEstadoOperativo,
           lat: latitude,
           lng: longitude,
-          password: formPassword.trim() || lugarActual?.password,
+          password: finalPassword,
         });
         setEditingId(null);
         showNotification('¡Punto de acopio actualizado correctamente!', 'success');
@@ -240,6 +259,7 @@ export default function App() {
           setSubmitting(false);
           return;
         }
+        const hashedPassword = await hashPassword(formPassword.trim());
         const nuevo = await addLugar({
           nombre: formNombre.trim(),
           estado: formEstado,
@@ -250,7 +270,7 @@ export default function App() {
           estadoOperativo: formEstadoOperativo,
           lat: latitude,
           lng: longitude,
-          password: formPassword.trim(),
+          password: hashedPassword,
         });
         if (nuevo) setSelectedLugar(nuevo);
         showNotification('¡Nuevo punto de acopio registrado con éxito!', 'success');
