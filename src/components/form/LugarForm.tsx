@@ -28,9 +28,9 @@ export default function LugarForm({
   onCancelEdit,
 }: LugarFormProps) {
   const inputClass =
-    'w-full px-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-700 transition-all font-semibold text-slate-800 dark:text-slate-100';
+    'w-full px-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-cranberry-500/20 focus:border-cranberry-700 transition-all font-semibold text-slate-800 dark:text-slate-100';
   const selectClass =
-    'w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-700 transition-all font-semibold text-slate-700 dark:text-slate-350';
+    'w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-cranberry-500/20 focus:border-cranberry-700 transition-all font-semibold text-slate-700 dark:text-slate-350';
   const labelClass =
     'text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1 block';
 
@@ -46,7 +46,7 @@ export default function LugarForm({
       )}
 
       <div className="flex items-center gap-2.5 mb-5">
-        <div className="w-2 h-6 bg-blue-700 rounded-full" />
+        <div className="w-2 h-6 bg-cranberry-700 rounded-full" />
         <div>
           <h2 className="font-bold text-slate-800 dark:text-slate-100 text-base">
             {editingId ? 'Editar Centro de Acopio' : 'Registrar Nuevo Punto'}
@@ -165,7 +165,7 @@ export default function LugarForm({
         <div className="bg-slate-50/60 dark:bg-slate-800/40 p-3.5 rounded-2xl border border-dashed border-slate-200 dark:border-slate-700 space-y-2">
           <div className="flex items-center justify-between text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
             <span>Coordenadas *</span>
-            <span className="text-blue-700 dark:text-blue-400">Tip: Haz clic en el mapa</span>
+            <span className="text-cranberry-700 dark:text-cranberry-400">Tip: Haz clic en el mapa</span>
           </div>
           <div className="grid grid-cols-2 gap-3">
             <input
@@ -174,7 +174,7 @@ export default function LugarForm({
               placeholder="Latitud (Ej. 10.5)"
               value={form.lat}
               onChange={(e) => onCoordChange(e.target.value, form.lng)}
-              className="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-xs focus:ring-1 focus:ring-blue-500/30 outline-none text-slate-700 dark:text-slate-100 font-semibold"
+              className="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-xs focus:ring-1 focus:ring-cranberry-500/30 outline-none text-slate-700 dark:text-slate-100 font-semibold"
               required
             />
             <input
@@ -183,7 +183,7 @@ export default function LugarForm({
               placeholder="Longitud (Ej. -66.9)"
               value={form.lng}
               onChange={(e) => onCoordChange(form.lat, e.target.value)}
-              className="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-xs focus:ring-1 focus:ring-blue-500/30 outline-none text-slate-700 dark:text-slate-100 font-semibold"
+              className="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-xs focus:ring-1 focus:ring-cranberry-500/30 outline-none text-slate-700 dark:text-slate-100 font-semibold"
               required
             />
           </div>
@@ -202,7 +202,7 @@ export default function LugarForm({
           <button
             type="submit"
             disabled={submitting}
-            className="flex-2 bg-blue-700 hover:bg-blue-800 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold rounded-xl shadow-lg shadow-blue-200 hover:shadow-blue-300/40 transition-all cursor-pointer text-center py-3 flex items-center justify-center gap-1.5"
+            className="flex-2 bg-cranberry-700 hover:bg-cranberry-800 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold rounded-xl shadow-lg shadow-cranberry-200 hover:shadow-cranberry-300/40 transition-all cursor-pointer text-center py-3 flex items-center justify-center gap-1.5"
           >
             {submitting ? (
               <Loader2 className="w-4 h-4 animate-spin" />

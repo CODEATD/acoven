@@ -28,7 +28,7 @@ export default function LugaresList({
     <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-5 shadow-sm flex flex-col gap-4 transition-all hover:shadow-md">
       <div className="flex justify-between items-center pb-2 border-b border-slate-100 dark:border-slate-800">
         <div className="flex items-center gap-2.5">
-          <div className="w-2 h-6 bg-blue-700 rounded-full"></div>
+          <div className="w-2 h-6 bg-cranberry-700 rounded-full"></div>
           <div>
             <h2 className="font-bold text-slate-700 dark:text-slate-150 text-base">Lugares Registrados</h2>
             <p className="text-[10px] text-slate-400 dark:text-slate-500 font-medium">

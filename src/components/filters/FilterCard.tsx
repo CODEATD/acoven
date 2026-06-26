@@ -49,7 +49,7 @@ export default function FilterCard({
         {hasActiveFilters && (
           <button
             onClick={resetFilters}
-            className="text-xs font-bold text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 transition-colors cursor-pointer"
+            className="text-xs font-bold text-cranberry-700 dark:text-cranberry-400 hover:text-cranberry-900 dark:hover:text-cranberry-300 transition-colors cursor-pointer"
           >
             Limpiar Filtros
           </button>
@@ -65,7 +65,7 @@ export default function FilterCard({
             placeholder="Buscar ubicación..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl pl-9 pr-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-700 transition-all font-semibold text-slate-800 dark:text-slate-100"
+            className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl pl-9 pr-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-cranberry-500/20 focus:border-cranberry-700 transition-all font-semibold text-slate-800 dark:text-slate-100"
           />
         </div>
 
@@ -74,7 +74,7 @@ export default function FilterCard({
           <select
             value={estadoFilter}
             onChange={(e) => setEstadoFilter(e.target.value)}
-            className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-700 transition-all font-semibold text-slate-600 dark:text-slate-350"
+            className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-cranberry-500/20 focus:border-cranberry-700 transition-all font-semibold text-slate-600 dark:text-slate-350"
           >
             <option value="" className="dark:bg-slate-800 dark:text-slate-100">Todos los Estados</option>
             {ESTADOS_VENEZUELA.map((est) => (
@@ -90,7 +90,7 @@ export default function FilterCard({
           <select
             value={tipoFilter}
             onChange={(e) => setTipoFilter(e.target.value)}
-            className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-700 transition-all font-semibold text-slate-600 dark:text-slate-350"
+            className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-cranberry-500/20 focus:border-cranberry-700 transition-all font-semibold text-slate-600 dark:text-slate-350"
           >
             <option value="" className="dark:bg-slate-800 dark:text-slate-100">Cualquier Categoría</option>
             {TIPOS_ACOPIO.map((t) => (
@@ -106,7 +106,7 @@ export default function FilterCard({
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-700 transition-all font-semibold text-slate-600 dark:text-slate-350"
+            className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-cranberry-500/20 focus:border-cranberry-700 transition-all font-semibold text-slate-600 dark:text-slate-350"
           >
             <option value="" className="dark:bg-slate-800 dark:text-slate-100">Todos los Estados Operativos</option>
             <option value="activo" className="dark:bg-slate-800 dark:text-slate-100">Abierto</option>
@@ -123,7 +123,7 @@ export default function FilterCard({
             onClick={() => setSortByDistance((p) => !p)}
             className={`flex items-center gap-2 text-xs font-bold py-1.5 px-3.5 rounded-full transition-all cursor-pointer ${
               sortByDistance
-                ? 'bg-blue-700 text-white shadow-sm'
+                ? 'bg-cranberry-700 text-white shadow-sm'
                 : 'bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
             }`}
           >

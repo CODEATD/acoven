@@ -5,7 +5,7 @@ export default function LoadingOverlay() {
   return (
     <div className="fixed inset-0 z-9999 flex flex-col items-center justify-center bg-white/90 dark:bg-slate-950/90 backdrop-blur-sm">
       <div className="flex flex-col items-center gap-4">
-        <div className="w-14 h-14 bg-blue-700 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-700/20">
+        <div className="w-14 h-14 bg-cranberry-700 rounded-2xl flex items-center justify-center shadow-lg shadow-cranberry-700/20">
           <Loader2 className="w-7 h-7 text-white animate-spin" />
         </div>
         <div className="text-center">

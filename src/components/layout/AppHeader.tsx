@@ -15,18 +15,19 @@ export default function AppHeader({ activos, showInstallBtn, onInstallClick, onE
   return (
     <header className="flex flex-col sm:flex-row items-center justify-between px-6 py-4 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 gap-4 shrink-0 shadow-sm transition-colors">
       <div className="flex items-center gap-3">
-        <div className="w-10 h-10 bg-blue-700 rounded-xl flex items-center justify-center shadow-md shadow-blue-700/10">
-          <Heart className="h-5 w-5 text-white fill-white animate-pulse" />
-        </div>
-        <div>
-          <h1 className="text-2xl font-black tracking-tight text-slate-800 dark:text-slate-100">
-            Busca <span className="text-blue-700 dark:text-blue-400">Acopio</span>
-            <span className="text-[9px] bg-yellow-400 dark:bg-yellow-500 text-blue-900 dark:text-slate-950 font-extrabold px-2 py-0.5 rounded-full ml-2 align-middle border border-yellow-500/20 shadow-sm">
-              VENEZUELA
-            </span>
+        <a href="https://rotaract4370.org" target="_blank" rel="noreferrer" className="flex items-center hover:opacity-90 transition-opacity">
+          <img 
+            src="https://rotaract4370.org/wp-content/uploads/2025/03/logotipo-1.svg" 
+            alt="Rotaract Distrito 4370" 
+            className="h-10 w-auto"
+          />
+        </a>
+        <div className="ml-2 hidden sm:block border-l border-slate-200 dark:border-slate-700 pl-4">
+          <h1 className="text-sm font-black tracking-tight text-rotaract-text dark:text-slate-100 uppercase">
+            Acopio <span className="text-cranberry-500">Venezuela</span>
           </h1>
-          <p className="text-[10px] text-slate-400 dark:text-slate-500 font-bold uppercase tracking-wider">
-            Plataforma Colaborativa de Registro
+          <p className="text-[9px] text-slate-500 font-bold uppercase tracking-widest mt-0.5">
+            Plataforma Colaborativa
           </p>
         </div>
       </div>
@@ -34,7 +35,7 @@ export default function AppHeader({ activos, showInstallBtn, onInstallClick, onE
       <div className="flex flex-wrap gap-4 items-center text-xs md:text-sm font-medium text-slate-500 dark:text-slate-400">
         <span className="hidden sm:inline">Venezuela • Colaborativo</span>
         <span className="h-4 w-px bg-slate-200 dark:bg-slate-800 hidden sm:inline" />
-        <span className="text-blue-700 dark:text-blue-400 font-bold">{activos} Centros Activos</span>
+        <span className="text-cranberry-700 dark:text-cranberry-400 font-bold">{activos} Centros Activos</span>
         <span className="h-4 w-px bg-slate-200 dark:bg-slate-800" />
 
         <div className="flex items-center gap-2">
@@ -69,7 +70,7 @@ export default function AppHeader({ activos, showInstallBtn, onInstallClick, onE
             <button
               onClick={onInstallClick}
               title="Instalar esta web como aplicación"
-              className="flex items-center gap-1.5 bg-blue-700 hover:bg-blue-800 text-white font-bold rounded-lg px-2.5 py-1.5 text-xs shadow-md cursor-pointer border border-blue-600 animate-pulse transition-all"
+              className="flex items-center gap-1.5 bg-cranberry-700 hover:bg-cranberry-800 text-white font-bold rounded-lg px-2.5 py-1.5 text-xs shadow-md cursor-pointer border border-cranberry-600 animate-pulse transition-all"
             >
               <Download className="w-3.5 h-3.5" />
               <span className="hidden md:inline">Instalar App</span>

@@ -327,7 +327,7 @@ function AppContent() {
       )}
 
       {/* Venezuelan tricolor top bar */}
-      <div className="h-1.5 w-full bg-linear-to-r from-yellow-400 via-blue-600 to-red-600 shrink-0" />
+      <div className="h-1.5 w-full bg-linear-to-r from-yellow-400 via-cranberry-600 to-red-600 shrink-0" />
 
       {/* Header */}
       <AppHeader
@@ -401,7 +401,7 @@ function AppContent() {
               onClick={() => setActiveTab('map')}
               className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                 activeTab === 'map'
-                  ? 'bg-white dark:bg-slate-900 text-blue-800 dark:text-blue-400 shadow-md scale-[1.02]'
+                  ? 'bg-white dark:bg-slate-900 text-cranberry-800 dark:text-cranberry-400 shadow-md scale-[1.02]'
                   : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
               }`}
             >
@@ -412,7 +412,7 @@ function AppContent() {
               onClick={() => setActiveTab('list')}
               className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                 activeTab === 'list'
-                  ? 'bg-white dark:bg-slate-900 text-blue-800 dark:text-blue-400 shadow-md scale-[1.02]'
+                  ? 'bg-white dark:bg-slate-900 text-cranberry-800 dark:text-cranberry-400 shadow-md scale-[1.02]'
                   : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
               }`}
             >

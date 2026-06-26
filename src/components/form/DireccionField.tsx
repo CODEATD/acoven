@@ -20,7 +20,7 @@ export default function DireccionField({ value, onChange, onGeocode, loading }: 
           placeholder="Ej. Calle Principal, frente a la Plaza Bolívar"
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="flex-1 px-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-700 transition-all font-semibold text-slate-800 dark:text-slate-100"
+          className="flex-1 px-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-cranberry-500/20 focus:border-cranberry-700 transition-all font-semibold text-slate-800 dark:text-slate-100"
           required
         />
         <button
@@ -28,7 +28,7 @@ export default function DireccionField({ value, onChange, onGeocode, loading }: 
           onClick={onGeocode}
           disabled={loading}
           title="Buscar coordenadas por dirección"
-          className="shrink-0 flex items-center justify-center gap-1.5 bg-blue-700 hover:bg-blue-800 disabled:bg-slate-300 dark:disabled:bg-slate-700 text-white text-xs font-bold py-2 px-3 rounded-xl transition-all cursor-pointer"
+          className="shrink-0 flex items-center justify-center gap-1.5 bg-cranberry-700 hover:bg-cranberry-800 disabled:bg-slate-300 dark:disabled:bg-slate-700 text-white text-xs font-bold py-2 px-3 rounded-xl transition-all cursor-pointer"
         >
           {loading ? (
             <Loader2 className="w-3.5 h-3.5 animate-spin" />

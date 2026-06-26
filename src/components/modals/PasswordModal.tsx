@@ -66,7 +66,7 @@ export default function PasswordModal({
                   placeholder="Contraseña"
                   value={passwordInput}
                   onChange={(e) => onPasswordChange(e.target.value)}
-                  className="w-full px-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-700 transition-all font-semibold text-slate-800 dark:text-slate-100"
+                  className="w-full px-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-cranberry-500/20 focus:border-cranberry-700 transition-all font-semibold text-slate-800 dark:text-slate-100"
                   required
                   autoFocus
                 />
@@ -82,7 +82,7 @@ export default function PasswordModal({
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 bg-blue-700 hover:bg-blue-800 text-white font-bold rounded-xl shadow-lg shadow-blue-200 transition-all cursor-pointer text-center py-3"
+                  className="flex-1 bg-cranberry-700 hover:bg-cranberry-800 text-white font-bold rounded-xl shadow-lg shadow-cranberry-200 transition-all cursor-pointer text-center py-3"
                 >
                   Verificar
                 </button>

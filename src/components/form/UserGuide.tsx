@@ -4,8 +4,8 @@ import { MapPin, Lock, Database, Info } from 'lucide-react';
 export default function UserGuide() {
   const steps = [
     {
-      icon: <MapPin className="w-3.5 h-3.5 text-blue-700 dark:text-blue-400" />,
-      iconBg: 'bg-blue-50 dark:bg-blue-950/30 border-blue-100 dark:border-blue-900/20',
+      icon: <MapPin className="w-3.5 h-3.5 text-cranberry-700 dark:text-cranberry-400" />,
+      iconBg: 'bg-cranberry-50 dark:bg-cranberry-950/30 border-cranberry-100 dark:border-cranberry-900/20',
       title: '1. Registro de Ubicación',
       desc: (
         <>
@@ -52,7 +52,7 @@ export default function UserGuide() {
   return (
     <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-5 shadow-sm space-y-4 transition-all hover:shadow-md">
       <div className="flex items-center gap-2.5 pb-2 border-b border-slate-100 dark:border-slate-800">
-        <div className="w-2 h-6 bg-blue-700 rounded-full" />
+        <div className="w-2 h-6 bg-cranberry-700 rounded-full" />
         <h2 className="font-extrabold text-slate-800 dark:text-slate-100 text-sm tracking-tight">
           Guía de Uso para el Usuario
         </h2>

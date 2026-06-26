@@ -15,7 +15,7 @@ export default function StatusBadge({ status, variant = 'pill' }: StatusBadgePro
   if (variant === 'dot') {
     const dotClass =
       status === 'activo'
-        ? 'bg-blue-600 shadow-sm shadow-blue-500/50'
+        ? 'bg-cranberry-600 shadow-sm shadow-cranberry-500/50'
         : status === 'saturado'
           ? 'bg-amber-500 shadow-sm shadow-amber-500/50'
           : 'bg-rose-500 shadow-sm';
@@ -24,7 +24,7 @@ export default function StatusBadge({ status, variant = 'pill' }: StatusBadgePro
 
   const pillClass =
     status === 'activo'
-      ? 'bg-blue-600 text-white shadow-sm'
+      ? 'bg-cranberry-600 text-white shadow-sm'
       : status === 'saturado'
         ? 'bg-amber-500 text-slate-900 shadow-sm'
         : 'bg-rose-500 text-white';

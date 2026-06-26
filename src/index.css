@@ -1,9 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-sans: "Open Sans", ui-sans-serif, system-ui, sans-serif;
+  
+  --color-cranberry-50: #fbe7f0;
+  --color-cranberry-100: #f2b6d0;
+  --color-cranberry-200: #eb92b9;
+  --color-cranberry-300: #e26199;
+  --color-cranberry-400: #dd4285;
+  --color-cranberry-500: #d41367;
+  --color-cranberry-600: #c1115e;
+  --color-cranberry-700: #970d49;
+  --color-cranberry-800: #750a39;
+  --color-cranberry-900: #59082b;
+  
+  --color-rotaract-text: #121212;
 }
 
 /* Custom Leaflet Popup Overrides for Modern Aesthetic using Tailwind @apply */

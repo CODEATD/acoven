@@ -33,7 +33,7 @@ export default function LugarDetailPanel({
           <span
             className={`text-[9px] uppercase font-extrabold px-2 py-0.5 rounded-full ${
               selectedLugar.estadoOperativo === 'activo'
-                ? 'bg-blue-600 text-white shadow-sm'
+                ? 'bg-cranberry-600 text-white shadow-sm'
                 : selectedLugar.estadoOperativo === 'saturado'
                   ? 'bg-amber-500 text-slate-900 shadow-sm'
                   : 'bg-rose-500 text-white'
@@ -66,7 +66,7 @@ export default function LugarDetailPanel({
       <div className="flex sm:flex-col items-stretch gap-2 w-full sm:w-auto shrink-0 pt-3 sm:pt-0">
         {userGpsLocation && (
           <div className="text-center text-[11px] text-slate-400 font-semibold bg-slate-800 rounded-xl py-1.5 px-3 flex items-center justify-center gap-1.5">
-            <Navigation2 className="w-3 h-3 text-blue-400" />
+            <Navigation2 className="w-3 h-3 text-cranberry-400" />
             {haversineKm(userGpsLocation.lat, userGpsLocation.lng, selectedLugar.lat, selectedLugar.lng).toFixed(1)} km
           </div>
         )}
@@ -74,7 +74,7 @@ export default function LugarDetailPanel({
           href={`https://www.google.com/maps/search/?api=1&query=${selectedLugar.lat},${selectedLugar.lng}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-bold text-xs py-2.5 px-4 rounded-xl transition-all shadow-sm cursor-pointer no-underline text-center"
+          className="flex-1 flex items-center justify-center gap-2 bg-cranberry-700 hover:bg-cranberry-800 text-white font-bold text-xs py-2.5 px-4 rounded-xl transition-all shadow-sm cursor-pointer no-underline text-center"
         >
           <Map className="w-3.5 h-3.5" />
           <span>Ver en Google Maps</span>

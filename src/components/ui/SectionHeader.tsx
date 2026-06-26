@@ -10,7 +10,7 @@ interface SectionHeaderProps {
 }
 
 const barColors: Record<BarColor, string> = {
-  blue: 'bg-blue-700',
+  blue: 'bg-cranberry-700',
   amber: 'bg-amber-500',
   indigo: 'bg-indigo-500',
   emerald: 'bg-emerald-500',

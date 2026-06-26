@@ -26,10 +26,10 @@ export default function Toast() {
           <div
             className={`p-1.5 rounded-xl text-white ${
               notification.type === 'success'
-                ? 'bg-blue-600'
+                ? 'bg-cranberry-600'
                 : notification.type === 'error'
                   ? 'bg-rose-500'
-                  : 'bg-blue-500'
+                  : 'bg-cranberry-500'
             }`}
           >
             {notification.type === 'success' ? (

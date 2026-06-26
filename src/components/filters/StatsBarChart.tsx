@@ -29,7 +29,7 @@ export default function StatsBarChart({ statsByEstado }: StatsBarChartProps) {
             </span>
             <div className="flex-1 h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
               <div
-                className="h-full bg-blue-600 dark:bg-blue-500 rounded-full transition-all duration-500"
+                className="h-full bg-cranberry-600 dark:bg-cranberry-500 rounded-full transition-all duration-500"
                 style={{ width: `${(s.count / statsByEstado[0].count) * 100}%` }}
               />
             </div>

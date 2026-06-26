@@ -166,7 +166,7 @@ export default function MapaInteractivo({
             <span>Lng: ${lugar.lng}</span>
           </div>
           <div class="mt-3">
-            <a href="https://www.google.com/maps/search/?api=1&query=${lugar.lat},${lugar.lng}" target="_blank" rel="noopener noreferrer" class="block text-center text-xs font-bold text-white bg-blue-700 hover:bg-blue-800 transition-all rounded-lg py-1.5 px-3 no-underline shadow-sm">
+            <a href="https://www.google.com/maps/search/?api=1&query=${lugar.lat},${lugar.lng}" target="_blank" rel="noopener noreferrer" class="block text-center text-xs font-bold text-white bg-cranberry-700 hover:bg-cranberry-800 transition-all rounded-lg py-1.5 px-3 no-underline shadow-sm">
               Ver en Google Maps
             </a>
           </div>
@@ -249,8 +249,8 @@ export default function MapaInteractivo({
     return L.divIcon({
       html: `
         <div class="relative flex items-center justify-center">
-          <div class="absolute -inset-2.5 rounded-full bg-blue-500/40 animate-ping" style="animation-duration: 2.2s;"></div>
-          <div class="w-4 h-4 bg-blue-600 rounded-full border-2 border-white shadow-lg"></div>
+          <div class="absolute -inset-2.5 rounded-full bg-cranberry-500/40 animate-ping" style="animation-duration: 2.2s;"></div>
+          <div class="w-4 h-4 bg-cranberry-600 rounded-full border-2 border-white shadow-lg"></div>
         </div>
       `,
       className: 'custom-leaflet-user-marker',
@@ -312,7 +312,7 @@ export default function MapaInteractivo({
 
       userMarker.bindPopup(`
         <div class="p-1 text-center font-sans">
-          <p class="font-bold text-xs text-blue-700">Tu ubicación actual</p>
+          <p class="font-bold text-xs text-cranberry-700">Tu ubicación actual</p>
           <p class="text-[9px] text-gray-400 mt-0.5">Lat: ${userLocation.lat}, Lng: ${userLocation.lng}</p>
         </div>
       `);
@@ -343,9 +343,9 @@ export default function MapaInteractivo({
         className="absolute top-4 right-4 z-20 flex items-center justify-center gap-1.5 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 disabled:text-slate-400 font-bold py-2.5 px-3.5 rounded-xl border border-slate-200/80 dark:border-slate-800 shadow-md transition-all cursor-pointer select-none active:scale-95"
       >
         {locating ? (
-          <Loader2 className="w-4 h-4 animate-spin text-blue-700 dark:text-blue-500" />
+          <Loader2 className="w-4 h-4 animate-spin text-cranberry-700 dark:text-cranberry-500" />
         ) : (
-          <Navigation className="w-4 h-4 text-blue-700 dark:text-blue-500 fill-blue-700/10 rotate-45" />
+          <Navigation className="w-4 h-4 text-cranberry-700 dark:text-cranberry-500 fill-cranberry-700/10 rotate-45" />
         )}
         <span className="text-xs font-bold shrink-0">{locating ? 'Ubicando...' : 'Mi Ubicación'}</span>
       </button>
