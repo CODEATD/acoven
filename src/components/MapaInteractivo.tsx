@@ -3,9 +3,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import { Navigation, Loader2 } from 'lucide-react';
 import { Lugar } from '../types';
 
 interface MapaInteractivoProps {
@@ -27,6 +28,10 @@ export default function MapaInteractivo({
   const mapRef = useRef<L.Map | null>(null);
   const markersLayerRef = useRef<L.LayerGroup | null>(null);
   const tempMarkerRef = useRef<L.Marker | null>(null);
+  const userMarkerRef = useRef<L.Marker | null>(null);
+
+  const [locating, setLocating] = useState(false);
+  const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
 
   // Custom SVG Markers
   const createMarkerIcon = (estadoOperativo: 'activo' | 'saturado' | 'inactivo', nombre: string) => {
@@ -229,10 +234,102 @@ export default function MapaInteractivo({
     }
   }, [selectedLugar]);
 
+  // 5. User Geolocation helpers
+  const createUserMarkerIcon = () => {
+    return L.divIcon({
+      html: `
+        <div class="relative flex items-center justify-center">
+          <div class="absolute -inset-2.5 rounded-full bg-blue-500/40 animate-ping" style="animation-duration: 2.2s;"></div>
+          <div class="w-4 h-4 bg-blue-600 rounded-full border-2 border-white shadow-lg"></div>
+        </div>
+      `,
+      className: 'custom-leaflet-user-marker',
+      iconSize: [20, 20],
+      iconAnchor: [10, 10],
+    });
+  };
+
+  const handleLocateUser = () => {
+    if (!navigator.geolocation) {
+      alert('La geolocalización no está soportada por tu navegador.');
+      return;
+    }
+
+    setLocating(true);
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        const lat = parseFloat(latitude.toFixed(5));
+        const lng = parseFloat(longitude.toFixed(5));
+        
+        setUserLocation({ lat, lng });
+        setLocating(false);
+
+        if (mapRef.current) {
+          mapRef.current.setView([lat, lng], 14, {
+            animate: true,
+            duration: 1.5,
+          });
+        }
+      },
+      (error) => {
+        console.error('Error obteniendo geolocalización:', error);
+        alert('No se pudo acceder a tu ubicación. Verifica los permisos del navegador.');
+        setLocating(false);
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 0,
+      }
+    );
+  };
+
+  // Render/Update User GPS Location Marker
+  useEffect(() => {
+    if (!mapRef.current) return;
+
+    if (userMarkerRef.current) {
+      userMarkerRef.current.remove();
+      userMarkerRef.current = null;
+    }
+
+    if (userLocation) {
+      const userMarker = L.marker([userLocation.lat, userLocation.lng], {
+        icon: createUserMarkerIcon(),
+      }).addTo(mapRef.current);
+
+      userMarker.bindPopup(`
+        <div class="p-1 text-center font-sans">
+          <p class="font-bold text-xs text-blue-700">Tu ubicación actual</p>
+          <p class="text-[9px] text-gray-400 mt-0.5">Lat: ${userLocation.lat}, Lng: ${userLocation.lng}</p>
+        </div>
+      `);
+
+      userMarkerRef.current = userMarker;
+    }
+  }, [userLocation]);
+
   return (
     <div className="relative w-full h-full min-h-[400px] md:min-h-[500px] rounded-2xl overflow-hidden shadow-inner border border-gray-100 bg-gray-50">
       <div ref={mapContainerRef} className="w-full h-full z-10" id="map-leaflet" />
       
+      {/* Floating GPS Button */}
+      <button
+        type="button"
+        onClick={handleLocateUser}
+        disabled={locating}
+        title="Centrar en mi ubicación GPS"
+        className="absolute top-4 right-4 z-20 flex items-center justify-center gap-1.5 bg-white/95 backdrop-blur-md hover:bg-slate-50 text-slate-800 disabled:text-slate-400 font-bold py-2.5 px-3.5 rounded-xl border border-slate-200/80 shadow-md transition-all cursor-pointer select-none active:scale-95"
+      >
+        {locating ? (
+          <Loader2 className="w-4 h-4 animate-spin text-blue-700" />
+        ) : (
+          <Navigation className="w-4 h-4 text-blue-700 fill-blue-700/10 rotate-45" />
+        )}
+        <span className="text-xs font-bold shrink-0">{locating ? 'Ubicando...' : 'Mi Ubicación'}</span>
+      </button>
+
       {/* Dynamic Map Legend Overlay */}
       <div className="absolute bottom-4 left-4 z-20 bg-white/95 backdrop-blur-md p-3.5 rounded-xl shadow-lg border border-gray-100/50 max-w-xs text-xs pointer-events-auto">
         <h5 className="font-bold text-gray-900 mb-2 flex items-center gap-1.5">
