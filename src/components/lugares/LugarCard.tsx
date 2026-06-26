@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { MapPin, Phone, Map, Share2, Edit2, Trash2, Navigation2 } from 'lucide-react';
+import { MapPin, Phone, Map, Share2, Edit2, Trash2, Navigation2, Calendar, Clock, Instagram } from 'lucide-react';
 import { Lugar } from '../../types';
 import { haversineKm } from '../../utils/haversine';
 
@@ -77,6 +77,24 @@ export default function LugarCard({
             <div className="flex items-center gap-1">
               <Phone className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500 shrink-0" />
               <span>{lugar.contacto}</span>
+            </div>
+          )}
+          {lugar.fechaInicio && (
+            <div className="flex items-center gap-1">
+              <Calendar className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500 shrink-0" />
+              <span>{lugar.fechaInicio}{lugar.fechaFin ? ` a ${lugar.fechaFin}` : ''}</span>
+            </div>
+          )}
+          {lugar.horaInicio && (
+            <div className="flex items-center gap-1">
+              <Clock className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500 shrink-0" />
+              <span>{lugar.horaInicio}{lugar.horaFin ? ` - ${lugar.horaFin}` : ''}</span>
+            </div>
+          )}
+          {lugar.instagram && (
+            <div className="flex items-center gap-1">
+              <Instagram className="w-3.5 h-3.5 text-cranberry-500 shrink-0" />
+              <span className="text-cranberry-600 font-semibold">{lugar.instagram}</span>
             </div>
           )}
         </div>

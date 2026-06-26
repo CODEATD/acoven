@@ -15,6 +15,11 @@ type LugarDB = {
   estado_operativo: 'activo' | 'saturado' | 'inactivo';
   password: string | null;
   created_at: string;
+  fecha_inicio: string | null;
+  fecha_fin: string | null;
+  hora_inicio: string | null;
+  hora_fin: string | null;
+  instagram: string | null;
 };
 
 function toApp(row: LugarDB): Lugar {
@@ -31,6 +36,11 @@ function toApp(row: LugarDB): Lugar {
     estadoOperativo: row.estado_operativo,
     password: row.password ?? undefined,
     createdAt: row.created_at,
+    fechaInicio: row.fecha_inicio ?? undefined,
+    fechaFin: row.fecha_fin ?? undefined,
+    horaInicio: row.hora_inicio ?? undefined,
+    horaFin: row.hora_fin ?? undefined,
+    instagram: row.instagram ?? undefined,
   };
 }
 
@@ -46,6 +56,11 @@ function toDB(lugar: Omit<Lugar, 'id' | 'createdAt'>): Omit<LugarDB, 'id' | 'cre
     tipo_acopio: lugar.tipoAcopio,
     estado_operativo: lugar.estadoOperativo,
     password: lugar.password ?? null,
+    fecha_inicio: lugar.fechaInicio ?? null,
+    fecha_fin: lugar.fechaFin ?? null,
+    hora_inicio: lugar.horaInicio ?? null,
+    hora_fin: lugar.horaFin ?? null,
+    instagram: lugar.instagram ?? null,
   };
 }
 
@@ -117,6 +132,11 @@ export function useLugares() {
     if (updates.tipoAcopio !== undefined) dbUpdates.tipo_acopio = updates.tipoAcopio;
     if (updates.estadoOperativo !== undefined) dbUpdates.estado_operativo = updates.estadoOperativo;
     if (updates.password !== undefined) dbUpdates.password = updates.password ?? null;
+    if (updates.fechaInicio !== undefined) dbUpdates.fecha_inicio = updates.fechaInicio ?? null;
+    if (updates.fechaFin !== undefined) dbUpdates.fecha_fin = updates.fechaFin ?? null;
+    if (updates.horaInicio !== undefined) dbUpdates.hora_inicio = updates.horaInicio ?? null;
+    if (updates.horaFin !== undefined) dbUpdates.hora_fin = updates.horaFin ?? null;
+    if (updates.instagram !== undefined) dbUpdates.instagram = updates.instagram ?? null;
 
     const { error: err } = await supabase
       .from('puntos_acopio')

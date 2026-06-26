@@ -125,7 +125,7 @@ export default function LugarForm({
 
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className={labelClass}>Contacto</label>
+            <label className={labelClass}>Contacto (Telf / Email)</label>
             <input
               type="text"
               placeholder="Ej. 0212 1234567"
@@ -135,6 +135,65 @@ export default function LugarForm({
             />
           </div>
 
+          <div>
+            <label className={labelClass}>Instagram (Opcional)</label>
+            <input
+              type="text"
+              placeholder="Ej. @rotaract4370"
+              value={form.instagram}
+              onChange={(e) => onFieldChange('instagram', e.target.value)}
+              className={inputClass}
+            />
+          </div>
+        </div>
+
+        <div className="bg-slate-50/50 dark:bg-slate-800/20 p-3.5 rounded-2xl border border-slate-200 dark:border-slate-700/50 space-y-3">
+          <h3 className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+            Horarios y Fechas (Opcionales)
+          </h3>
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className={labelClass}>Fecha Inicio</label>
+              <input
+                type="date"
+                value={form.fechaInicio}
+                onChange={(e) => onFieldChange('fechaInicio', e.target.value)}
+                className={inputClass}
+              />
+            </div>
+            <div>
+              <label className={labelClass}>Fecha Fin</label>
+              <input
+                type="date"
+                value={form.fechaFin}
+                onChange={(e) => onFieldChange('fechaFin', e.target.value)}
+                className={inputClass}
+              />
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className={labelClass}>Hora Apertura</label>
+              <input
+                type="time"
+                value={form.horaInicio}
+                onChange={(e) => onFieldChange('horaInicio', e.target.value)}
+                className={inputClass}
+              />
+            </div>
+            <div>
+              <label className={labelClass}>Hora Cierre</label>
+              <input
+                type="time"
+                value={form.horaFin}
+                onChange={(e) => onFieldChange('horaFin', e.target.value)}
+                className={inputClass}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3">
           <div>
             <label className={labelClass}>Estado Operativo</label>
             <select
@@ -148,18 +207,17 @@ export default function LugarForm({
               <option value="inactivo" className="dark:bg-slate-800 dark:text-slate-100">🔴 Cerrado</option>
             </select>
           </div>
-        </div>
-
-        <div>
-          <label className={labelClass}>Contraseña del Punto *</label>
-          <input
-            type="password"
-            placeholder={editingId ? 'Dejar vacío para no cambiar' : 'Contraseña de edición/borrado'}
-            value={form.password}
-            onChange={(e) => onFieldChange('password', e.target.value)}
-            className={inputClass}
-            required={!editingId}
-          />
+          <div>
+            <label className={labelClass}>Contraseña del Punto *</label>
+            <input
+              type="password"
+              placeholder={editingId ? 'Dejar vacío si no cambia' : 'Para editar/borrar luego'}
+              value={form.password}
+              onChange={(e) => onFieldChange('password', e.target.value)}
+              className={inputClass}
+              required={!editingId}
+            />
+          </div>
         </div>
 
         <div className="bg-slate-50/60 dark:bg-slate-800/40 p-3.5 rounded-2xl border border-dashed border-slate-200 dark:border-slate-700 space-y-2">

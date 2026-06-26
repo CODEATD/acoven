@@ -16,6 +16,11 @@ export interface Lugar {
   estadoOperativo: 'activo' | 'saturado' | 'inactivo'; // 'activo' (Recibiendo), 'saturado' (Lleno), 'inactivo' (Cerrado)
   createdAt: string;
   password?: string; // Contraseña opcional para puntos heredados, pero requerida para nuevos
+  fechaInicio?: string;
+  fechaFin?: string;
+  horaInicio?: string;
+  horaFin?: string;
+  instagram?: string;
 }
 
 export const ESTADOS_VENEZUELA = [

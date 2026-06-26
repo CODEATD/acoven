@@ -12,6 +12,11 @@ export interface FormState {
   lat: string;
   lng: string;
   password: string;
+  fechaInicio: string;
+  fechaFin: string;
+  horaInicio: string;
+  horaFin: string;
+  instagram: string;
 }
 
 const DEFAULT_STATE: FormState = {
@@ -25,6 +30,11 @@ const DEFAULT_STATE: FormState = {
   lat: '',
   lng: '',
   password: '',
+  fechaInicio: '',
+  fechaFin: '',
+  horaInicio: '',
+  horaFin: '',
+  instagram: '',
 };
 
 export function useForm() {
@@ -52,6 +62,11 @@ export function useForm() {
       lat: lugar.lat.toString(),
       lng: lugar.lng.toString(),
       password: '',
+      fechaInicio: lugar.fechaInicio || '',
+      fechaFin: lugar.fechaFin || '',
+      horaInicio: lugar.horaInicio || '',
+      horaFin: lugar.horaFin || '',
+      instagram: lugar.instagram || '',
     });
   };
 

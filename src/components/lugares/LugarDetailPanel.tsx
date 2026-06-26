@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { MapPin, Phone, Map, Share2, Edit2, Trash2, Navigation2 } from 'lucide-react';
+import { MapPin, Phone, Map, Share2, Edit2, Trash2, Navigation2, Calendar, Clock, Instagram } from 'lucide-react';
 import { Lugar } from '../../types';
 import { haversineKm } from '../../utils/haversine';
 
@@ -58,6 +58,26 @@ export default function LugarDetailPanel({
             <p className="flex items-center gap-1.5">
               <Phone className="w-3.5 h-3.5 text-slate-400 shrink-0" />
               <span>{selectedLugar.contacto}</span>
+            </p>
+          )}
+          {selectedLugar.fechaInicio && (
+            <p className="flex items-center gap-1.5">
+              <Calendar className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+              <span>{selectedLugar.fechaInicio}{selectedLugar.fechaFin ? ` a ${selectedLugar.fechaFin}` : ''}</span>
+            </p>
+          )}
+          {selectedLugar.horaInicio && (
+            <p className="flex items-center gap-1.5">
+              <Clock className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+              <span>{selectedLugar.horaInicio}{selectedLugar.horaFin ? ` - ${selectedLugar.horaFin}` : ''}</span>
+            </p>
+          )}
+          {selectedLugar.instagram && (
+            <p className="flex items-center gap-1.5">
+              <Instagram className="w-3.5 h-3.5 text-cranberry-500 shrink-0" />
+              <a href={`https://instagram.com/${selectedLugar.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="text-cranberry-600 font-semibold hover:underline">
+                {selectedLugar.instagram}
+              </a>
             </p>
           )}
         </div>
