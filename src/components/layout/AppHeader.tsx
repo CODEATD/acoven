@@ -39,7 +39,7 @@ export default function AppHeader({ activos, showInstallBtn, onInstallClick, onE
         <span className="h-4 w-px bg-slate-200 dark:bg-slate-800" />
 
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1.5 bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-900 text-emerald-700 dark:text-emerald-400 rounded-lg px-2.5 py-1.5 text-xs font-semibold">
+          <div className="flex items-center gap-1.5 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-lg px-2.5 py-1.5 text-xs font-semibold">
             <Database className="w-3.5 h-3.5" />
             <span className="hidden md:inline">Supabase</span>
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse inline-block" />
@@ -48,34 +48,11 @@ export default function AppHeader({ activos, showInstallBtn, onInstallClick, onE
           <button
             onClick={onExport}
             title="Respaldar todo en JSON"
-            className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-350 hover:text-slate-950 dark:hover:text-white transition-all rounded-lg px-2.5 py-1.5 text-xs font-semibold cursor-pointer border border-slate-200/50 dark:border-slate-700"
+            className="flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-slate-950 transition-all rounded-lg px-2.5 py-1.5 text-xs font-semibold cursor-pointer border border-slate-200/50"
           >
-            <Download className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" />
+            <Download className="w-3.5 h-3.5 text-slate-500" />
             <span className="hidden md:inline">Exportar</span>
           </button>
-
-          <button
-            onClick={toggleTheme}
-            title={`Cambiar a modo ${theme === 'light' ? 'oscuro' : 'claro'}`}
-            className="flex items-center justify-center bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition-all rounded-lg p-1.5 text-xs font-semibold cursor-pointer border border-slate-200/50 dark:border-slate-700"
-          >
-            {theme === 'light' ? (
-              <Moon className="w-4 h-4 text-slate-600" />
-            ) : (
-              <Sun className="w-4 h-4 text-amber-500" />
-            )}
-          </button>
-
-          {showInstallBtn && (
-            <button
-              onClick={onInstallClick}
-              title="Instalar esta web como aplicación"
-              className="flex items-center gap-1.5 bg-cranberry-700 hover:bg-cranberry-800 text-white font-bold rounded-lg px-2.5 py-1.5 text-xs shadow-md cursor-pointer border border-cranberry-600 animate-pulse transition-all"
-            >
-              <Download className="w-3.5 h-3.5" />
-              <span className="hidden md:inline">Instalar App</span>
-            </button>
-          )}
         </div>
       </div>
     </header>
