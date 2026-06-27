@@ -6,7 +6,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { Navigation, Loader2 } from 'lucide-react';
+import { Navigation, Loader2, Maximize2, Minimize2 } from 'lucide-react';
 import { Lugar } from '../types';
 
 interface MapaInteractivoProps {
@@ -37,6 +37,7 @@ export default function MapaInteractivo({
 
   const [locating, setLocating] = useState(false);
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   // Custom SVG Markers
   const createMarkerIcon = (estadoOperativo: 'activo' | 'saturado' | 'inactivo', nombre: string) => {
@@ -330,24 +331,79 @@ export default function MapaInteractivo({
     tileLayerRef.current.setUrl(url);
   }, [theme]);
 
+  useEffect(() => {
+    if (isFullscreen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isFullscreen]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isFullscreen) {
+        setIsFullscreen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isFullscreen]);
+
+  useEffect(() => {
+    if (mapRef.current) {
+      mapRef.current.invalidateSize();
+      const timer = setTimeout(() => {
+        if (mapRef.current) {
+          mapRef.current.invalidateSize();
+        }
+      }, 150);
+      return () => clearTimeout(timer);
+    }
+  }, [isFullscreen]);
+
   return (
-    <div className="relative w-full h-full min-h-[400px] md:min-h-[500px] rounded-2xl overflow-hidden shadow-inner border border-gray-100 dark:border-slate-800 bg-gray-50 dark:bg-slate-900">
+    <div
+      className={
+        isFullscreen
+          ? "fixed inset-0 z-9999 w-screen h-screen bg-gray-50 dark:bg-slate-900"
+          : "relative w-full h-full min-h-[400px] md:min-h-[500px] rounded-2xl overflow-hidden shadow-inner border border-gray-100 dark:border-slate-800 bg-gray-50 dark:bg-slate-900"
+      }
+    >
       <div ref={mapContainerRef} className="w-full h-full z-10" id="map-leaflet" />
 
-      {/* Floating GPS Button */}
-      <button
-        type="button"
-        onClick={handleLocateUser}
-        disabled={locating}
-        title="Centrar en mi ubicación GPS"
-        className="absolute top-4 right-4 z-20 flex items-center justify-center gap-1.5 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 disabled:text-slate-400 font-bold py-2.5 px-3.5 rounded-xl border border-slate-200/80 dark:border-slate-800 shadow-md transition-all cursor-pointer select-none active:scale-95"
-      >
-        {locating ? (
-          <Loader2 className="w-4 h-4 animate-spin text-cranberry-700 dark:text-cranberry-500" />
-        ) : (
-          <i className="bi bi-crosshair"></i>
-        )}
-      </button>
+      <div className="absolute top-4 right-4 z-20 flex flex-col gap-2">
+        <button
+          type="button"
+          onClick={handleLocateUser}
+          disabled={locating}
+          title="Centrar en mi ubicación GPS"
+          className="flex items-center justify-center bg-white/95 dark:bg-slate-900/95 backdrop-blur-md hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 disabled:text-slate-400 font-bold w-10 h-10 rounded-xl border border-slate-200/80 dark:border-slate-800 shadow-md transition-all cursor-pointer select-none active:scale-95"
+        >
+          {locating ? (
+            <Loader2 className="w-4 h-4 animate-spin text-cranberry-700 dark:text-cranberry-500" />
+          ) : (
+            <i className="bi bi-crosshair text-lg"></i>
+          )}
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setIsFullscreen(!isFullscreen)}
+          title={isFullscreen ? 'Salir de pantalla completa' : 'Ver en pantalla completa'}
+          className="flex items-center justify-center bg-white/95 dark:bg-slate-900/95 backdrop-blur-md hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 font-bold w-10 h-10 rounded-xl border border-slate-200/80 dark:border-slate-800 shadow-md transition-all cursor-pointer select-none active:scale-95"
+        >
+          {isFullscreen ? (
+            <Minimize2 className="w-4.5 h-4.5 text-cranberry-700 dark:text-cranberry-500" />
+          ) : (
+            <Maximize2 className="w-4.5 h-4.5 text-slate-800 dark:text-slate-200" />
+          )}
+        </button>
+      </div>
 
       {/* Dynamic Map Legend Overlay */}
       {/* <div className="absolute bottom-4 left-4 z-20 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md p-3.5 rounded-xl shadow-lg border border-gray-100/50 dark:border-slate-800/50 max-w-xs text-xs pointer-events-auto">
