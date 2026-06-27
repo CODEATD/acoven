@@ -166,7 +166,7 @@ export default function MapaInteractivo({
             <span>Lng: ${lugar.lng}</span>
           </div>
           <div class="mt-3">
-            <a href="https://www.google.com/maps/search/?api=1&query=${lugar.lat},${lugar.lng}" target="_blank" rel="noopener noreferrer" class="block text-center text-xs font-bold text-white bg-cranberry-700 hover:bg-cranberry-800 transition-all rounded-lg py-1.5 px-3 no-underline shadow-sm">
+            <a href="https://www.google.com/maps/search/?api=1&query=${lugar.lat},${lugar.lng}" target="_blank" rel="noopener noreferrer" class="block text-center text-xs font-bold text-white! bg-cranberry-700 hover:bg-cranberry-800 transition-all rounded-lg py-1.5 px-3 no-underline shadow-sm">
               Ver en Google Maps
             </a>
           </div>
