@@ -271,7 +271,7 @@ export default function MapaInteractivo({
         const { latitude, longitude } = position.coords;
         const lat = parseFloat(latitude.toFixed(5));
         const lng = parseFloat(longitude.toFixed(5));
-        
+
         setUserLocation({ lat, lng });
         setLocating(false);
         onUserLocationResolved?.(lat, lng);
@@ -333,7 +333,7 @@ export default function MapaInteractivo({
   return (
     <div className="relative w-full h-full min-h-[400px] md:min-h-[500px] rounded-2xl overflow-hidden shadow-inner border border-gray-100 dark:border-slate-800 bg-gray-50 dark:bg-slate-900">
       <div ref={mapContainerRef} className="w-full h-full z-10" id="map-leaflet" />
-      
+
       {/* Floating GPS Button */}
       <button
         type="button"
@@ -345,13 +345,12 @@ export default function MapaInteractivo({
         {locating ? (
           <Loader2 className="w-4 h-4 animate-spin text-cranberry-700 dark:text-cranberry-500" />
         ) : (
-          <Navigation className="w-4 h-4 text-cranberry-700 dark:text-cranberry-500 fill-cranberry-700/10 rotate-45" />
+          <i className="bi bi-crosshair"></i>
         )}
-        <span className="text-xs font-bold shrink-0">{locating ? 'Ubicando...' : 'Mi Ubicación'}</span>
       </button>
 
       {/* Dynamic Map Legend Overlay */}
-      <div className="absolute bottom-4 left-4 z-20 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md p-3.5 rounded-xl shadow-lg border border-gray-100/50 dark:border-slate-800/50 max-w-xs text-xs pointer-events-auto">
+      {/* <div className="absolute bottom-4 left-4 z-20 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md p-3.5 rounded-xl shadow-lg border border-gray-100/50 dark:border-slate-800/50 max-w-xs text-xs pointer-events-auto">
         <h5 className="font-bold text-gray-900 dark:text-slate-100 mb-2 flex items-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
           Estado de Puntos
@@ -373,7 +372,7 @@ export default function MapaInteractivo({
             Haz clic en el mapa para capturar coordenadas.
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

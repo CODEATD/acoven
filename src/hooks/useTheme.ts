@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 export function useTheme() {
-  const theme = 'light';
+  const theme: 'light' | 'dark' = 'light';
 
   useEffect(() => {
     const root = window.document.documentElement;
