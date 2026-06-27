@@ -31,13 +31,12 @@ export default function LugarDetailPanel({
             {selectedLugar.estado}
           </span>
           <span
-            className={`text-[9px] uppercase font-extrabold px-2 py-0.5 rounded-full ${
-              selectedLugar.estadoOperativo === 'activo'
-                ? 'bg-cranberry-500 text-white shadow-sm'
-                : selectedLugar.estadoOperativo === 'saturado'
-                  ? 'bg-amber-500 text-slate-900 shadow-sm'
-                  : 'bg-rose-500 text-white'
-            }`}
+            className={`text-[9px] uppercase font-extrabold px-2 py-0.5 rounded-full ${selectedLugar.estadoOperativo === 'activo'
+              ? 'bg-cranberry-500 text-white shadow-sm'
+              : selectedLugar.estadoOperativo === 'saturado'
+                ? 'bg-amber-500 text-slate-900 shadow-sm'
+                : 'bg-rose-500 text-white'
+              }`}
           >
             {selectedLugar.estadoOperativo === 'activo'
               ? 'Recibiendo'
@@ -101,7 +100,7 @@ export default function LugarDetailPanel({
         </a>
         <button
           onClick={() => onShare(selectedLugar)}
-          className="flex-1 flex items-center justify-center gap-2 bg-white hover:bg-[#fbe7f0] text-[#D41367] border border-[#D41367] font-bold text-xs py-2 px-4 rounded-xl transition-all shadow-sm cursor-pointer"
+          className="flex-1 flex items-center justify-center gap-2 bg-white hover:bg-cranberry-50 text-[#D41367] border border-[#D41367] font-bold text-xs py-2 px-4 rounded-xl transition-all shadow-sm cursor-pointer"
         >
           <Share2 className="w-3.5 h-3.5" />
           <span>Compartir</span>
